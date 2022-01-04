@@ -2,14 +2,18 @@
   "name": "contable",
   "version": "1.0.0",
   "description": "Personal productivity tool",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build-watch": "parcel watch ./client/index.html",
+    "start-watch": "nodemon server/index.ts",
+    "dev": "concurrently --kill-others \"npm run start-watch\" \"npm run build-watch\"",
+    "build": "parcel build ./client/index.html",
+    "start": "npm run build && node server/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skh/confuserv.git"
+    "url": "git+https://github.com/skh/contable.git"
   },
   "author": "Sonja Krause-Harder",
   "license": "GPL-3.0",
@@ -18,17 +22,18 @@
   },
   "homepage": "https://github.com/skh/contable#readme",
   "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "html-webpack-plugin": "^5.5.0",
-    "typescript": "^3.3.3333",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.2"
+    "concurrently": "*",
+    "nodemon": "*",
+    "parcel-bundler": "*"
   },
   "dependencies": {
-    "@types/react": "^16.8.5",
-    "@types/react-dom": "^16.8.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.7",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "express": "*",
+    "react": "*",
+    "react-dom": "*",
+    "typescript": "^4.5.4"
   }
 }
